@@ -1,0 +1,25 @@
+function onOpen(e) {
+    var ui = SpreadsheetApp.getUi();
+        ui.createMenu("Tiller Custom Menu")
+        .addItem('🥕 Send to Grocery Sheet (Selected row)', 'grocerySplitbySelection')
+        .addItem('🟢 Savings Budget - Drill Down Budget', 'budgetDrillDown')
+        .addItem('💰 Payroll to first of month. (Selected row)','fixPayrollForSelectedRow')
+        .addItem('Hints: 🤵‍♂️ Add and Cleanup','doHints')
+        .addItem('⏰ Date Update (Selected row)', 'showDatePickerDialog')
+        .addItem('Amazon Order Numbers to Transactions', 'updateDescriptions')
+        .addSeparator()
+        .addItem('Paychecks','openPaychecksSheets')
+        .addItem('Paychecks🚫','hidePaychecksSheets')
+        .addItem('Transaction Cache','openTransactionCacheSheet')
+        .addItem('Transaction Cache 🚫','hideTransactionCacheSheet')
+        .addSeparator()
+        .addItem('Paycheck Data Insert ➡️','paycheckDeductionTransactionAutoInsert')
+        .addSeparator()
+        .addSubMenu(ui.createMenu('Other')
+              .addItem('Transactions: #️⃣ Set Check Number Field','setCheckNumbers')
+              .addItem('Transactions - Hide Columns','hideColumnsByName'))
+        .addSubMenu(ui.createMenu('Sheets')
+          .addItem('Show All Sheets','showAllSheets')
+          .addItem('Show Default Sheets','showDefaultSheets'))
+        .addToUi();
+  }

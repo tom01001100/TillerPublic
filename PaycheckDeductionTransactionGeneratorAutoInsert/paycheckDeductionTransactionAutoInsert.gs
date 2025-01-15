@@ -4,7 +4,7 @@ function paycheckDeductionTransactionAutoInsert() {
     const sheetName = currentSheet.getName();
 
     // Check if the sheet name is one of my "Paycheck Deduction Transaction Generator" sheets.
-    if (sheetName !== "Paycheck-Adam" && sheetName !== "Paycheck-Eve") {
+    if (sheetName !== "Paycheck-Adam" && sheetName !== "Paycheck-Eve" && sheetName !== "Paycheck Deductions Generator") {
       SpreadsheetApp.getUi().alert(
         `Error: This script can only be run on Paychecks sheets.`
       );

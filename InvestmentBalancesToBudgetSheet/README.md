@@ -5,12 +5,10 @@ I have 2 Tiller sheets, one for Investments and one for Budgeting. I would like 
 
 This script fetches just the balances from the Investments sheet **daily** and imports them into the Budgeting sheet.
 
----
 
 ## Installation
 It is a Google Apps Script function. Copy and paste the code into any `.gs` file within **Apps Script** from the **Extension** menu in Google Sheets.
 
----
 
 ## Setup
 
@@ -24,18 +22,16 @@ Create a daily trigger so the script runs automatically.
 
 ![Screenshot showing how to set a daily trigger](investment.trigger.gif)
 
----
 
 ## Usage
 This runs automatically once per day. **No manual actions** are needed after the trigger is set.
 
----
 
 ## Permissions
 **Is it okay for others to copy, use, and modify your workflow?**  
 Yes! Feel free to use and adapt as needed.
 
----
+
 
 ## Notes
 - Make sure both Balance History sheets have the same columns in the same order.

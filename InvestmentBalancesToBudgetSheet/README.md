@@ -29,7 +29,7 @@ This runs automatically once per day. **No manual actions** are needed after the
 
 ## Permissions
 **Is it okay for others to copy, use, and modify your workflow?**  
-Yes! Feel free to use and adapt as needed.
+Yup.
 
 
 

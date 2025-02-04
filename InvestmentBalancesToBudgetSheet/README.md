@@ -34,3 +34,11 @@ This runs automatically once per day. **No manual actions** are needed after the
 ## Permissions
 **Is it okay for others to copy, use, and modify your workflow?**  
 Yes! Feel free to use and adapt as needed.
+
+---
+
+## Notes
+- Make sure both Balance History sheets have the same columns in the same order.
+- **How do I get the ID for my Investment sheet?**  
+  It is in the URL bar when you are in that sheet:  
+  ![Screenshot showing the ID in the URL bar](investment.id.question.png)

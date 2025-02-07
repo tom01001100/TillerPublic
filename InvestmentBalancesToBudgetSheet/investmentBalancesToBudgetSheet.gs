@@ -1,15 +1,19 @@
 function investmentBalancesToBudgetSheet() {
-  // ==============================
-  // Configurable Variables
-  // ==============================
+  // ========================================
+  // Must Review and Update These Variables
+  // ========================================
   var sourceSpreadsheetId = "aY2Lrvvq8BYrxjyD8EhltKpoQB6bO1NMRkgmAGaTjHRW"; // Change this to your source sheet's (Investment Sheet) ID
+  var accountColumnIndex = 3; // Column D (3) is "Account" column on my sheet. Update so the number is for the Account column on your sheet. (zero-based index: A=0, B=1, C=2, D=3, etc.)
+  
+  // ==============================================
+  // Less likely to need changes to these variables
+  // ==============================================
   var sourceSheetName = "Balance History"; // Source spreadsheet (Investment Sheet)
   var targetSheetName = "Balance History"; // Destination sheet (Budget Sheet)
-  var accountColumnIndex = 3; // Column D is Account on my sheet. Update so the number is for the Account column on your sheet. (zero-based index: A=0, B=1, C=2, etc.)
 
-  // ==============================
-  // Script Logic
-  // ==============================
+  // ==============================================
+  // Script Logic - No changes needed below this point
+  // ==============================================
   var sourceSpreadsheet = SpreadsheetApp.openById(sourceSpreadsheetId);
   var sourceSheet = sourceSpreadsheet.getSheetByName(sourceSheetName);
   var targetSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(targetSheetName);
@@ -49,5 +53,5 @@ function investmentBalancesToBudgetSheet() {
   // Step 3: Paste new unique account data into row 2
   targetSheet.getRange(2, 1, numNewRows, filteredRows[0].length).setValues(filteredRows);
 
-  Logger.log("Successfully inserted " + numNewRows + " new rows and copied formatting.");
+  Logger.log("Successfully inserted " + numNewRows);
 }

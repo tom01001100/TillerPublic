@@ -76,7 +76,9 @@ function paycheckDeductionTransactionAutoInsert() {
       // If a "Transaction ID" column was found in the headers, populate each row with a unique UUID.
       if (txnIdColIndex !== -1) {
         for (let i = 0; i < data.length; i++) {
-          data[i][txnIdColIndex] = Utilities.getUuid();
+          if (!data[i][txnIdColIndex]) {
+            data[i][txnIdColIndex] = Utilities.getUuid();
+          }
         }
       }
 

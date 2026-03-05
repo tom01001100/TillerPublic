@@ -1,10 +1,17 @@
+// Add or remove sheet names here to control which sheets this script is allowed to run on.
+const ALLOWED_SHEET_NAMES = [
+  "Paycheck-Adam",
+  "Paycheck-Eve",
+  "Paycheck Deductions Generator",
+];
+
 function paycheckDeductionTransactionAutoInsert() {
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     const currentSheet = ss.getActiveSheet();
     const sheetName = currentSheet.getName();
 
     // Check if the sheet name is one of my "Paycheck Deduction Transaction Generator" sheets.
-    if (sheetName !== "Paycheck-Adam" && sheetName !== "Paycheck-Eve" && sheetName !== "Paycheck Deductions Generator") {
+    if (!ALLOWED_SHEET_NAMES.includes(sheetName)) {
       SpreadsheetApp.getUi().alert(
         `Error: This script can only be run on Paychecks sheets.`
       );

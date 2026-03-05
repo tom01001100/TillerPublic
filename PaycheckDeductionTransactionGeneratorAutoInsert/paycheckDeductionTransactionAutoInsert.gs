@@ -37,6 +37,22 @@ function paycheckDeductionTransactionAutoInsert() {
       return;
     }
 
+    // Finding the "Transaction ID" column index, so we can insert unique IDs if that column exists.
+    // Strip any $ signs (e.g. "$AT$4" -> "AT4") before parsing.
+    // Then build a header range that is 1 row above rangeStart, spanning through rangeEnd's column.
+    const startMatch = rangeStart.replace(/\$/g, "").match(/^([A-Za-z]+)(\d+)$/);
+    const endMatch = rangeEnd.replace(/\$/g, "").match(/^([A-Za-z]+)(\d+)$/);
+    if (!startMatch || !endMatch) {
+      SpreadsheetApp.getUi().alert("Error: AQ10 and AQ12 must contain valid cell addresses (e.g. AT4 or $AT$4).");
+      return;
+    }
+    const startCol = startMatch[1];
+    const headerRow = parseInt(startMatch[2], 10) - 1;
+    const endCol = endMatch[1];
+    const headerRangeAddress = `${startCol}${headerRow}:${endCol}${headerRow}`;
+    const headers = currentSheet.getRange(headerRangeAddress).getValues()[0];
+    const txnIdColIndex = headers.findIndex(h => h === "Transaction ID");
+
     // Get the number of rows to insert from AQ5
     // This is the number in the "Insert nn Rows in Transactions Sheet" section.
     const rowsToInsert = currentSheet.getRange("AQ5").getValue();
@@ -56,6 +72,13 @@ function paycheckDeductionTransactionAutoInsert() {
       // Get the data from the specified concatenated range
       const range = currentSheet.getRange(rangeAddress);
       const data = range.getValues();
+
+      // If a "Transaction ID" column was found in the headers, populate each row with a unique UUID.
+      if (txnIdColIndex !== -1) {
+        for (let i = 0; i < data.length; i++) {
+          data[i][txnIdColIndex] = Utilities.getUuid();
+        }
+      }
 
       // Paste the data into the Transactions sheet starting at B3
       // Your Transactions sheet may be different, but I use the first column for indicators, hence column B
